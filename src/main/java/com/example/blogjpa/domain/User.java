@@ -28,6 +28,11 @@ public class User extends BaseEntity {
         this.name = name;
     }
 
+    public User(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public void addComputer(Computer computer) {
         computer.setUser(this);
         computers.add(computer);

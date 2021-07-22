@@ -84,8 +84,5 @@ class UserTest {
 
         assertThat(findUser.getInsertTime()).isNotNull();
         assertThat(findUser.getUpdateTime()).isNotNull();
-
-        System.out.println("test insert time: " + findUser.getInsertTime());
-        System.out.println("test update time: " + findUser.getUpdateTime());
     }
 }
