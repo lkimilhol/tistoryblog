@@ -33,14 +33,6 @@ public class User {
         computers.add(computer);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public List<Computer> getComputers() {
         return computers;
     }

@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.blogjpa.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("select u from User u join fetch u.computers")
+    @Query("select DISTINCT u from User u join fetch u.computers")
     List<User> findAllJoinFetch();
 
     @EntityGraph(attributePaths = "computers")
-    @Query("select u from User u")
+    @Query("select DISTINCT u from User u")
     List<User> findAllEntityGraph();
 }

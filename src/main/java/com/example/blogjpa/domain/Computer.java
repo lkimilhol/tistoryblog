@@ -25,16 +25,8 @@ public class Computer {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public void setUser(User user) {
