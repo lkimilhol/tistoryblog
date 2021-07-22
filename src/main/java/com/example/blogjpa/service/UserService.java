@@ -21,9 +21,20 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<String> computerNames() {
+    public List<String> findComputerNamesRepository() {
+        return findComputerNames(userRepository.findAll());
+    }
+
+    public List<String> findComputerNamesByJoinFetch() {
+        return findComputerNames(userRepository.findAllJoinFetch());
+    }
+
+    public List<String> findComputerNamesByEntityGraph() {
+        return findComputerNames(userRepository.findAllEntityGraph());
+    }
+
+    private List<String> findComputerNames(List<User> users) {
         List<String> computerNames = new ArrayList<>();
-        List<User> users = userRepository.findAll();
 
         for (User user : users) {
             computerNames.addAll(user.getComputers().stream()

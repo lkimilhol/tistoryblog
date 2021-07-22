@@ -2,6 +2,7 @@ package com.example.blogjpa.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,20 +25,43 @@ class UserTest {
 
     @BeforeEach
     void setup() {
-        User user = new User("김메이어");
-        user.addComputer(new Computer("맥"));
-        user.addComputer(new Computer("그램"));
-        user.addComputer(new Computer("젠북"));
 
-        userRepository.save(user);
+        List<User> users = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User("유저" + i);
+            user.addComputer(new Computer("컴퓨터" + i));
+
+            users.add(user);
+        }
+
+        userRepository.saveAll(users);
     }
 
     @DisplayName("연관관계 확인")
     @Test
-    void createEntity() {
-        List<String> computerNames = userService.computerNames();
+    void find() {
+        List<String> computerNames = userService.findComputerNamesRepository();
         computerNames.forEach(System.out::println);
 
-        assertThat(computerNames.size()).isEqualTo(3);
+        assertThat(computerNames.size()).isEqualTo(10);
+    }
+
+    @DisplayName("연관관계 확인 - join fetch")
+    @Test
+    void findJoinFetch() {
+        List<String> computerNames = userService.findComputerNamesByJoinFetch();
+        computerNames.forEach(System.out::println);
+
+        assertThat(computerNames.size()).isEqualTo(10);
+    }
+
+    @DisplayName("연관관계 확인 - entity graph")
+    @Test
+    void findEntityGraph() {
+        List<String> computerNames = userService.findComputerNamesByEntityGraph();
+        computerNames.forEach(System.out::println);
+
+        assertThat(computerNames.size()).isEqualTo(10);
     }
 }
