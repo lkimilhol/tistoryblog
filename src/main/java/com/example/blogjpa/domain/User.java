@@ -24,9 +24,8 @@ public class User {
 
     public User() {}
 
-    public User(String name, List<Computer> computers) {
+    public User(String name) {
         this.name = name;
-        this.computers = computers;
     }
 
     public void addComputer(Computer computer) {
