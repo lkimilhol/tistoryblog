@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,5 +68,24 @@ class UserTest {
         List<String> computerNames = userService.findComputerNamesByEntityGraph();
 
         assertThat(computerNames.size()).isEqualTo(20);
+    }
+
+    @DisplayName("insert_time 확인")
+    @Test
+    void insertTime() {
+        // given
+        List<User> users = userRepository.findAll();
+        // when
+        // then
+        User user = users.get(0);
+        userService.updateName(user.getId(), "김메이어");
+
+        User findUser = userRepository.findById(user.getId()).orElseThrow(RuntimeException::new);
+
+        assertThat(findUser.getInsertTime()).isNotNull();
+        assertThat(findUser.getUpdateTime()).isNotNull();
+
+        System.out.println("test insert time: " + findUser.getInsertTime());
+        System.out.println("test update time: " + findUser.getUpdateTime());
     }
 }

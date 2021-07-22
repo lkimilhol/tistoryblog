@@ -44,4 +44,10 @@ public class UserService {
 
         return computerNames;
     }
+
+    @Transactional
+    public void updateName(Long userId, String name) {
+        User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
+        user.updateName(name);
+    }
 }
