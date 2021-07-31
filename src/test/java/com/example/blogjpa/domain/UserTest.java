@@ -75,13 +75,13 @@ class UserTest {
     void insertTime() {
         // given
         List<User> users = userRepository.findAll();
-        // when
-        // then
         User user = users.get(0);
         userService.updateName(user.getId(), "김메이어");
 
+        // when
         User findUser = userRepository.findById(user.getId()).orElseThrow(RuntimeException::new);
 
+        // then
         assertThat(findUser.getInsertTime()).isNotNull();
         assertThat(findUser.getUpdateTime()).isNotNull();
     }
