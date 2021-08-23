@@ -85,4 +85,14 @@ class UserTest {
         assertThat(findUser.getInsertTime()).isNotNull();
         assertThat(findUser.getUpdateTime()).isNotNull();
     }
+
+    @DisplayName("lazy 로딩으로 인한 equals 에러")
+    @Test
+    void equalsFailed() {
+        // given
+        // when
+        boolean isExists = userService.testComputerName();
+        // then
+        assertThat(isExists).isTrue();
+    }
 }
