@@ -33,6 +33,10 @@ public class Computer extends BaseEntity {
         this.user = user;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public String toString() {
         return "Computer{" +
