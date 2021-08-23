@@ -86,7 +86,7 @@ class UserTest {
         assertThat(findUser.getUpdateTime()).isNotNull();
     }
 
-    @DisplayName("lazy 로딩으로 인한 equals 에러")
+    @DisplayName("lazy 로딩으로 인한 equals 에러가 발생할까?")
     @Test
     void equalsFailed() {
         // given
