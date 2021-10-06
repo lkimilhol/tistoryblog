@@ -20,4 +20,10 @@ public class UseClass {
         test.add("c");
 //        int a = (Integer) test.get(0) / 1;
     }
+
+    public String genericClassCreate() {
+        GenericClass<String> genericClass = new GenericClass<>();
+        genericClass.setData("data");
+        return genericClass.getData();
+    }
 }
