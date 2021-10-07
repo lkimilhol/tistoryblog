@@ -2,10 +2,8 @@ package com.example.blogjava.interfacegeneric;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,5 +31,16 @@ class GenericClassTest {
         // when
         // then
         assertThatThrownBy(useClass::exceptionExample).isInstanceOf(ClassCastException.class);
+    }
+
+    @DisplayName("제네릭 메서드 테스트")
+    @Test
+    void method() {
+        // given
+        // when
+        Set<Integer> set = GenericClass.genericMethod(100);
+        set.add(100);
+        // then
+        assertThat(set.size()).isEqualTo(1);
     }
 }
